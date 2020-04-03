@@ -482,7 +482,9 @@ Int StrIOEncInit(CWMImageStrCodec* pSC)
                 pSC->ppTempFile[i] = (char *)malloc(FILENAME_MAX * sizeof(char));
                 if(pSC->ppTempFile[i] == NULL) return ICERR_ERROR;
 
+                #ifndef DISABLE_TMPNAM_ERROR
                 if ((pFilename = tmpnam(NULL)) == NULL)
+                #endif
                     return ICERR_ERROR;                
                 strcpy(pSC->ppTempFile[i], pFilename);
 #endif
